@@ -53,10 +53,27 @@ const Cart = () => {
 
       <div className="cart-container">
 
-        <h2 className="cart-title">🛒 Your Cart</h2>
+        {/* <h2 className="cart-title">🛒 Your Cart</h2> */}
 
         {cartItems.length === 0 ? (
-          <h2>Your Cart is Empty 😔</h2>
+          <div className="empty-cart">
+
+            <div className="empty-icon">🍽️</div>
+
+            <h2>Your Cart is Empty</h2>
+
+            <p>
+              Looks like you haven't added any delicious food yet.
+            </p>
+
+            <button
+              className="browse-btn"
+              onClick={() => navigate("/menu")}
+            >
+              Browse Menu
+            </button>
+
+          </div>
         ) : (
           cartItems.map((item) => (
             <div className="cart-card" key={item.id}>
@@ -115,67 +132,72 @@ const Cart = () => {
         )}
 
 
-        <div className="summary-card">
 
-          <h2>Order Summary</h2>
+        {cartItems.length > 0 && (
+
+          <div className="summary-card">
+
+            <h2>Order Summary</h2>
 
 
-          <div className="summary-row">
-            <span>Subtotal</span>
-            <span>₹{subtotal}</span>
+            <div className="summary-row">
+              <span>Subtotal</span>
+              <span>₹{subtotal}</span>
+            </div>
+
+
+            <div className="summary-row">
+              <span>Delivery Fee</span>
+              <span>₹{delivery}</span>
+            </div>
+
+
+            <div className="summary-row">
+              <span>Tax (5%)</span>
+              <span>₹{tax}</span>
+            </div>
+
+
+            <div className="summary-row">
+              <span>Discount</span>
+              <span>-₹{discount}</span>
+            </div>
+
+
+            <hr />
+
+
+            <div className="summary-total">
+              <span>Total</span>
+              <span>₹{total}</span>
+            </div>
+
+
+
+            <div className="cart-actions">
+
+              <button
+                className="continue-btn"
+                onClick={() => navigate("/menu")}
+              >
+                Continue Shopping
+              </button>
+
+
+              <button
+                className="checkout-btn"
+                onClick={() => navigate("/checkout")}
+              >
+                Proceed to Checkout
+              </button>
+
+
+            </div>
+
+
           </div>
 
-
-          <div className="summary-row">
-            <span>Delivery Fee</span>
-            <span>₹{delivery}</span>
-          </div>
-
-
-          <div className="summary-row">
-            <span>Tax (5%)</span>
-            <span>₹{tax}</span>
-          </div>
-
-
-          <div className="summary-row">
-            <span>Discount</span>
-            <span>-₹{discount}</span>
-          </div>
-
-
-          <hr />
-
-
-          <div className="summary-total">
-            <span>Total</span>
-            <span>₹{total}</span>
-          </div>
-
-
-
-          <div className="cart-actions">
-
-            <button
-              className="continue-btn"
-              onClick={() => navigate("/menu")}
-            >
-              Continue Shopping
-            </button>
-
-
-            <button
-              className="checkout-btn"
-              onClick={() => navigate("/checkout")}
-            >
-              Proceed to Checkout
-            </button>
-
-
-          </div>
-
-
-        </div>
+        )}
 
 
       </div>
