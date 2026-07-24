@@ -1,0 +1,10 @@
+.food-section{
+    padding:90px 8%;
+    background:#fff8f2;
+}
+
+.food-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:35px;
+}

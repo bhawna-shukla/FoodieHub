@@ -1,0 +1,232 @@
+.navbar {
+  width: 100%;
+  height: 80px;
+  background: #FFF8F3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;   /* 8% ki jagah */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:700;
+    color:#ff6b35;
+    cursor:pointer;
+}
+
+.logo span{
+    color:#222;
+}
+
+.nav-links{
+    display:flex;
+    gap:35px;
+}
+
+.nav-links li{
+    list-style:none;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#222;
+    font-size:17px;
+    font-weight:500;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#ff6b35;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.cart-icon{
+    font-size:22px;
+    cursor:pointer;
+}
+/* 
+.login-btn{
+    padding:10px 22px;
+    border:none;
+    background:#ff6b35;
+    color:white;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.login-btn:hover{
+    background:#e85d2b;
+} */
+
+
+
+
+
+/* .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.logo-icon {
+  font-size: 30px;
+  color: #FF6B35;
+} */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo h1 {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.logo-icon {
+  font-size: 38px;
+  color: #ff6b35;
+}
+
+@media (max-width: 900px) {
+
+  .logo h1 {
+    font-size: 32px;
+  }
+
+  .logo-icon {
+    font-size: 26px;
+  }
+
+}
+
+.foodie {
+  font-size: 32px;
+  font-weight: 700;
+  color: #FF6B35;
+}
+
+.hub {
+  font-size: 32px;
+  font-weight: 700;
+  color: #222831;
+}
+
+.menu-icon{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
+}
+
+@media (max-width: 768px) {
+
+  .navbar{
+    padding: 0 20px;
+  }
+
+  .nav-links{
+    position: fixed;
+    top: 80px;
+    left: -100%;
+    width: 100%;
+    background: #fff;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding: 30px 0;
+    transition: 0.4s;
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+  }
+  
+  .logo{
+    
+    font-weight:700;
+  }
+
+  .logo-icon {
+  font-size: 28px;
+  
+}
+
+  .nav-links.active{
+    left: 0;
+  }
+
+  .nav-right{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .login-btn{
+    display: none;
+  }
+
+  .menu-icon{
+    display: block;
+    font-size: 28px;
+  }
+
+  .cart-icon{
+    font-size: 24px;
+  }
+}
+
+.cart-link {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.cart-icon {
+  font-size: 24px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cart-icon:hover {
+  color: #ff6b35;
+}
+
+
+.login-btn{
+    padding: 10px 24px;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    background: #ff6b35;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.login-btn:hover{
+    background: #e85b2a;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255,107,53,.3);
+}
+
+.login-btn:active{
+    transform: scale(.96);
+}
+
+
+

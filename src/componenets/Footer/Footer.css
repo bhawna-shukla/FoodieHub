@@ -1,0 +1,194 @@
+.footer {
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+  color: #1f2937;
+  padding: 60px 10% 20px;
+  overflow: hidden;
+}
+
+
+/* Footer Container */
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 35px;
+}
+
+
+/* Animated Brand Text */
+.footer-box h2 {
+  color: #ea580c;
+  font-size: 30px;
+  margin-bottom: 15px;
+  animation: slideText 1.5s ease;
+}
+
+
+@keyframes slideText {
+
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+/* Heading */
+.footer-box h3 {
+  color: #c2410c;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+
+/* Heading underline animation */
+.footer-box h3::after {
+  content: "";
+  width: 40px;
+  height: 3px;
+  background: #f97316;
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  animation: lineMove 2s infinite;
+}
+
+
+@keyframes lineMove {
+
+  0% {
+    width: 20px;
+  }
+
+  50% {
+    width: 60px;
+  }
+
+  100% {
+    width: 20px;
+  }
+
+}
+
+
+/* Paragraph */
+.footer-box p {
+  color: #57534e;
+  line-height: 1.7;
+}
+
+
+/* Links */
+.footer-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+
+.footer-box ul li {
+  margin: 10px 0;
+  color: #57534e;
+  transition: .3s;
+}
+
+
+.footer-box ul li:hover {
+  color: #ea580c;
+  transform: translateX(8px);
+}
+
+
+/* Map */
+.footer-map iframe {
+
+  width: 100%;
+  height: 180px;
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 10px 25px rgba(234,88,12,0.15);
+  transition: .4s;
+
+}
+
+
+.footer-map iframe:hover {
+
+  transform: translateY(-8px);
+
+}
+
+
+/* Social Icons */
+.social-icons {
+
+  display:flex;
+  gap:20px;
+  font-size:25px;
+
+}
+
+
+.social-icons svg {
+
+  color:#ea580c;
+  cursor:pointer;
+  transition:.3s;
+
+}
+
+
+.social-icons svg:hover {
+
+  transform: translateY(-6px) scale(1.1);
+  color:#c2410c;
+
+}
+
+
+/* Bottom */
+.footer-bottom {
+
+  text-align:center;
+  border-top:4px solid #ed8510;
+  margin-top:40px;
+  padding-top:20px;
+  color:#e8670b;
+  text-transform:uppercase;
+  font-weight:600;
+  font-size:20px;
+
+}
+
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.footer-container{
+
+grid-template-columns:1fr;
+text-align:center;
+
+}
+
+
+.footer-box h3::after{
+
+left:50%;
+transform:translateX(-50%);
+
+}
+
+
+.social-icons{
+
+justify-content:center;
+
+}
+
+}
