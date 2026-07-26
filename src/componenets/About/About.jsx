@@ -1,8 +1,12 @@
+import Navbar from "../Navbar/Navbar";
 import "./About.css";
+import Footer from "../Footer/Footer";
 import { motion } from "framer-motion";
 
 const About = () => {
   return (
+   <>
+    <Navbar />
     <section className="about" id="about">
 
       <motion.div
@@ -42,6 +46,8 @@ const About = () => {
       </motion.div>
 
     </section>
+    <Footer />
+ </>
   );
 };
 

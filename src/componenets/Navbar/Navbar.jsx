@@ -21,15 +21,11 @@ const Navbar = () => {
       </div>
       <ul className={menuOpen ? "nav-links active" : "nav-links"}>
         <li><Link to="/">Home</Link></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="/about">About</a></li>
         <li><Link to="/menu">Menu</Link></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#contact">Contact</a></li>
-        {/* <li>
-          <Link to="/cart" className="mobile-cart-link">
-            <FaShoppingCart />
-          </Link>
-        </li> */}
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/contact">Contact</a></li>
+       
       </ul>
 
       <div className="nav-right">

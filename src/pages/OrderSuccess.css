@@ -52,3 +52,20 @@
 .continue-btn:hover {
   background: #e65a29;
 }
+
+.order-date {
+  color: #666;
+  font-size: 15px;
+  margin: 12px 0;
+}
+.success-message {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 20px 0;
+}
+
+.success-icon {
+  font-size: 70px;
+  margin-bottom: 15px;
+}

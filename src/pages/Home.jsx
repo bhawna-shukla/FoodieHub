@@ -10,7 +10,7 @@ import Contact from "../componenets/Contact/Contact";
 import Footer from "../componenets/Footer/Footer";
 import MenuHero from "../componenets/MenuHero/MenuHero";
 import Categories from "../componenets/Category/Categories";
-import MenuSearch from "../componenets/MenuSearch/MenuSearch";
+// import MenuSearch from "../componenets/MenuSearch/MenuSearch";
 
 
 const Home = () => {
@@ -24,9 +24,10 @@ const Home = () => {
          <SpecialOffer />
          <Testimonials />
          <GallerySection />
+         {/* <MenuSearch /> */}
           <Contact />
           <Footer />
-          <MenuSearch />
+          
           
           
     </>
