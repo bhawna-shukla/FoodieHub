@@ -1,17 +1,22 @@
+import Navbar from "../Navbar/Navbar";
 import "./GallerySection.css";
 import { motion } from "framer-motion";
 
+
 const images = [
-  "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600",
-  "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",
-  "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600",
-  "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
-  "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600",
+  "https://plus.unsplash.com/premium_photo-1745946640161-01dda3002d48?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHJlc3R1cmFudCUyMHRhYmxlfGVufDB8fDB8fHww",
+  "https://plus.unsplash.com/premium_photo-1661434796182-a411d8782d68?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHJlc3R1cmFudCUyMHRhYmxlfGVufDB8fDB8fHww",
+  "https://plus.unsplash.com/premium_photo-1670984939638-01d1854a5d12?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cmVzdHVyYW50JTIwdGFibGV8ZW58MHx8MHx8fDA%3D",
+  "https://images.unsplash.com/photo-1724426057815-a12b34f027c1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdHVyYW50JTIwdGFibGV8ZW58MHx8MHx8fDA%3D",
+  "https://images.unsplash.com/photo-1576867757603-05b134ebc379?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGZvb2QlMjB0YWJsZXxlbnwwfHwwfHx8MA%3D%3D",
   "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600",
 ];
 
 const GallerySection = () => {
   return (
+    <>
+    <Navbar />
+      
     <section className="gallery">
       {/* <h2>Food Gallery</h2> */}
 
@@ -46,6 +51,9 @@ const GallerySection = () => {
         ))}
       </div>
     </section>
+    
+     
+   </>
   );
 };
 

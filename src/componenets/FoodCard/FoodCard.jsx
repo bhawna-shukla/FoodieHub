@@ -21,14 +21,16 @@ const FoodCard = ({ food }) => {
         <div className="food-top">
           <h3>{food.name}</h3>
 
-          <span className="food-price">
+          
+
+        {/* <p className="food-rating">
+          ⭐ {food.rating}
+        </p> */}
+
+        <span className="food-price">
             ₹{food.price}
           </span>
         </div>
-
-        <p className="food-rating">
-          ⭐ {food.rating}
-        </p>
 
         <button
           className="add-btn"

@@ -46,7 +46,7 @@ const About = () => {
       </motion.div>
 
     </section>
-    <Footer />
+    
  </>
   );
 };

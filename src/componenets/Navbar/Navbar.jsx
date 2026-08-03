@@ -25,6 +25,7 @@ const Navbar = () => {
         <li><Link to="/menu">Menu</Link></li>
         <li><a href="/gallery">Gallery</a></li>
         <li><a href="/contact">Contact</a></li>
+        <Link to="/signup">Sign Up</Link>
        
       </ul>
 
@@ -41,12 +42,11 @@ const Navbar = () => {
     )}
   </Link>
 </div>
-        <button
-          className="login-btn"
-          onClick={() => alert("Login page coming soon 🚀")}
-        >
-          Login
-        </button>
+       <Link to="/login">
+  <button className="login-btn">
+    Login
+  </button>
+</Link>
 
         <div
           className="menu-icon"

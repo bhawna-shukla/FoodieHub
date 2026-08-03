@@ -1,0 +1,79 @@
+.login {
+  min-height: 100vh;
+  background: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 120px 20px 80px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.1);
+  text-align: center;
+}
+
+.login-card h2 {
+  color: #ff6b35;
+  margin-bottom: 10px;
+}
+
+.login-card p {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  outline: none;
+  font-size: 15px;
+}
+
+.login-card input:focus {
+  border-color: #ff6b35;
+  box-shadow: 0 0 8px rgba(255,107,53,.2);
+}
+
+.login-btn-main {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  background: #ff6b35;
+  color: white;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.login-btn-main:hover {
+  background: #e85a29;
+}
+
+.forgot {
+  display: block;
+  margin-top: 18px;
+  color: #ff6b35;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.signup-text {
+  margin-top: 20px;
+  color: #555;
+}
+
+.signup-text span {
+  color: #ff6b35;
+  font-weight: 600;
+  cursor: pointer;
+}

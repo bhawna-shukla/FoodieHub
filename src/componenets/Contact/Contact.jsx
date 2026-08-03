@@ -1,9 +1,14 @@
+import Navbar from "../Navbar/Navbar";
 import "./Contact.css";
+import Footer from "../Footer/Footer";
+
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaInstagram, FaFacebook } from "react-icons/fa";
 
 function Contact() {
 
   return (
+    <>
+    <Navbar />
     <section className="contact-section" id="contact">
 
       <div className="contact-title">
@@ -110,6 +115,9 @@ function Contact() {
       </div>
 
     </section>
+
+     
+    </>
   )
 }
 
