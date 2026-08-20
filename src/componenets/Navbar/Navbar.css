@@ -227,6 +227,28 @@
 .login-btn:active{
     transform: scale(.96);
 }
+.logout-btn {
+  border: 2px solid #ff6b35;
+  padding: 9px 18px;
+  border-radius: 25px;
+  background: transparent;
+  color: #ff6b35;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 10px;
+}
 
+.logout-btn:hover {
+  background: #ff6b35;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 107, 53, 0.25);
+}
+
+.logout-btn:active {
+  transform: scale(0.95);
+}
 
 

@@ -4,14 +4,113 @@ const bcrypt = require("bcrypt");
 
 const router = express.Router();
 
-// Signup API
+// ==========================
+// SIGNUP API
+// ==========================
 router.post("/signup", async (req, res) => {
-  // tumhara existing signup code
+  try {
+    const { name, email, phone, password } = req.body;
+
+    // Check required fields
+    if (!name || !email || !phone || !password) {
+      return res.status(400).json({
+        message: "All fields are required",
+      });
+    }
+
+    // Check if email already exists
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      return res.status(400).json({
+        message: "Email already registered",
+      });
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create user
+    const newUser = new User({
+      name,
+      email,
+      phone,
+      password: hashedPassword,
+    });
+
+    await newUser.save();
+
+    // Success response
+    res.status(201).json({
+      message: "User registered successfully",
+      user: {
+        name: newUser.name,
+        email: newUser.email,
+        phone: newUser.phone,
+      },
+    });
+  } catch (error) {
+    console.error("Signup Error:", error);
+
+    res.status(500).json({
+      message: "Server error",
+      error: error.message,
+    });
+  }
 });
 
-// Login API
+// ==========================
+// LOGIN API
+// ==========================
 router.post("/login", async (req, res) => {
-  // login code
+  try {
+    const { email, password } = req.body;
+
+    // Check required fields
+    if (!email || !password) {
+      return res.status(400).json({
+        message: "Email and password are required",
+      });
+    }
+
+    // Find user
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(401).json({
+        message: "Invalid email or password",
+      });
+    }
+
+    // Compare password
+    const isPasswordCorrect = await bcrypt.compare(
+      password,
+      user.password
+    );
+
+    if (!isPasswordCorrect) {
+      return res.status(401).json({
+        message: "Invalid email or password",
+      });
+    }
+
+    // Login success
+    res.status(200).json({
+      message: "Login successful",
+      user: {
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+      },
+    });
+  } catch (error) {
+    console.error("Login Error:", error);
+
+    res.status(500).json({
+      message: "Server error",
+      error: error.message,
+    });
+  }
 });
 
 module.exports = router;

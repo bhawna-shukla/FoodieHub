@@ -42,7 +42,7 @@ function Footer() {
         <div className="footer-box">
           <h3>Contact</h3>
           <p>📍 Lucknow, India</p>
-          <p>📞 +91 9876543210</p>
+          <p>📞 +91 9XXXXXXX10</p>
           <p>✉️ foodiehub@gmail.com</p>
         </div>
 

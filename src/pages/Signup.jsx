@@ -25,13 +25,19 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log("🔥 SIGNUP BUTTON CLICKED");
+    console.log("Form Data:", formData);
+
     // Check password
     if (formData.password !== formData.confirmPassword) {
-      setMessage("Passwords do not match");
+      setMessage("Passwords do not match ❌");
+      console.log("❌ Passwords do not match");
       return;
     }
 
     try {
+      console.log("📡 Sending signup request...");
+
       const response = await fetch(
         "http://localhost:5000/api/users/signup",
         {
@@ -48,7 +54,11 @@ const Signup = () => {
         }
       );
 
+      console.log("📡 Response Status:", response.status);
+
       const data = await response.json();
+
+      console.log("📦 Server Response:", data);
 
       if (response.ok) {
         setMessage("Account created successfully! 🎉");
@@ -61,11 +71,11 @@ const Signup = () => {
           confirmPassword: "",
         });
       } else {
-        setMessage(data.message);
+        setMessage(data.message || "Signup failed ❌");
       }
     } catch (error) {
-      setMessage("Unable to connect to server");
-      console.log(error);
+      console.error("❌ Signup Error:", error);
+      setMessage("Unable to connect to server ❌");
     }
   };
 
@@ -155,7 +165,6 @@ const Signup = () => {
             </p>
 
           </div>
-
         </div>
       </section>
     </>
