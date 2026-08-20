@@ -94,15 +94,17 @@ router.post("/login", async (req, res) => {
       });
     }
 
-    // Login success
-    res.status(200).json({
-      message: "Login successful",
-      user: {
-        name: user.name,
-        email: user.email,
-        phone: user.phone,
-      },
-    });
+   // Login success
+res.status(200).json({
+  message: "Login successful",
+  user: {
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    phone: user.phone,
+  },
+});
+
   } catch (error) {
     console.error("Login Error:", error);
 

@@ -9,16 +9,16 @@ import { useNavigate } from "react-router-dom";
 const Checkout = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-
+  const user = JSON.parse(localStorage.getItem("user"));
   const { cartItems, clearCart } = useContext(CartContext);
   const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    address: "",
-    city: "",
-    state: "",
-    pincode: "",
-  });
+  name: user?.name || "",
+  phone: user?.phone || "",
+  address: "",
+  city: "",
+  state: "",
+  pincode: "",
+});
 
   const [error, setError] = useState("");
 
@@ -34,6 +34,86 @@ const Checkout = () => {
   const discount = cartItems.length > 0 ? 100 : 0;
 
   const total = subtotal + delivery + tax - discount;
+  const handlePlaceOrder = async () => {
+  if (
+    !formData.name ||
+    !formData.phone ||
+    !formData.address ||
+    !formData.city ||
+    !formData.state ||
+    !formData.pincode
+  ) {
+    setError("⚠ Please fill all delivery details");
+    return;
+  }
+
+  setError("");
+  setLoading(true);
+
+  try {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user || !user._id) {
+      setError("Please login again.");
+      setLoading(false);
+      return;
+    }
+
+    const orderData = {
+      userId: user._id,
+
+      customerName: formData.name,
+      phone: formData.phone,
+      address: formData.address,
+      city: formData.city,
+      state: formData.state,
+      pincode: formData.pincode,
+
+      items: cartItems.map((item) => ({
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+      })),
+
+      subtotal,
+      delivery,
+      tax,
+      discount,
+      total,
+
+      paymentMethod: "cod",
+    };
+
+    const response = await fetch(
+      "http://localhost:5000/api/orders",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      }
+    );
+
+    const data = await response.json();
+
+    console.log("Order Response:", data);
+
+    if (!response.ok) {
+      setError(data.message || "Order failed");
+      setLoading(false);
+      return;
+    }
+
+    clearCart();
+    navigate("/order-success");
+
+  } catch (error) {
+    console.error("Order Error:", error);
+    setError("Unable to connect to server");
+    setLoading(false);
+  }
+};
   return (
     <>
       <Navbar />
@@ -177,27 +257,7 @@ const Checkout = () => {
             <button
   className="payment-btn"
   disabled={loading}
-  onClick={() => {
-
-    if (
-      !formData.name ||
-      !formData.phone ||
-      !formData.address ||
-      !formData.city ||
-      !formData.pincode
-    ) {
-      alert("⚠ Please fill all delivery details");
-      return;
-    }
-
-    setLoading(true);
-
-    setTimeout(() => {
-      clearCart();
-      navigate("/order-success");
-    }, 3000);
-
-  }}
+  onClick={handlePlaceOrder}
 >
   {loading ? "Placing Order..." : "Place Order"}
 </button>

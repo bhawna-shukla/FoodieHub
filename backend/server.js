@@ -1,7 +1,7 @@
 const dns = require("dns");
 
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
-
+const orderRoutes = require("./routes/orderRoutes");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -17,6 +17,9 @@ app.use(express.json());
 
 // User Routes
 app.use("/api/users", userRoutes);
+
+// Order Routes
+app.use("/api/orders", orderRoutes);
 
 // Test route
 app.get("/", (req, res) => {

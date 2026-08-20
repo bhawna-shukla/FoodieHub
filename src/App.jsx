@@ -9,7 +9,7 @@ import Cart from "./pages/Cart";
 import Contact from "./componenets/Contact/Contact";
 import GallerySection from "./componenets/GallerySection/GallerySection";
 import About from "./componenets/About/About";
-
+import ProtectedRoute from "./componenets/ProtectedRoute";
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
 
@@ -26,7 +26,14 @@ function App() {
           <Route path="/gallery" element={<GallerySection />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />
+          <Route
+            path="/checkout"
+            element={
+              <ProtectedRoute>
+                <Checkout />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/order-success" element={<OrderSuccess />} />
           <Route path="/about" element={<About />} />
         </Routes>
