@@ -12,6 +12,7 @@ import About from "./componenets/About/About";
 import ProtectedRoute from "./componenets/ProtectedRoute";
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
+import MyOrders from "./pages/MyOrders";
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           />
           <Route path="/order-success" element={<OrderSuccess />} />
           <Route path="/about" element={<About />} />
+          <Route path="/my-orders" element={<MyOrders />} />
         </Routes>
       </BrowserRouter>
     </CartProvider>

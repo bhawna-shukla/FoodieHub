@@ -44,11 +44,11 @@ const OrderSuccess = () => {
           </p>
 
           <button
-            className="continue-btn"
-            onClick={() => navigate("/menu")}
-          >
-            Continue Shopping
-          </button>
+  className="continue-btn"
+  onClick={() => navigate("/my-orders")}
+>
+  View My Orders
+</button>
 
         </motion.div>
 

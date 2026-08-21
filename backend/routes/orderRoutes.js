@@ -66,11 +66,38 @@ router.post("/", async (req, res) => {
       message: "Order placed successfully",
       order: newOrder,
     });
+
   } catch (error) {
     console.error("Order Error:", error);
 
     res.status(500).json({
       message: "Failed to place order",
+      error: error.message,
+    });
+  }
+});
+
+// ==========================
+// GET USER ORDERS API
+// ==========================
+router.get("/user/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const orders = await Order.find({ userId }).sort({
+      createdAt: -1,
+    });
+
+    res.status(200).json({
+      message: "Orders fetched successfully",
+      orders,
+    });
+
+  } catch (error) {
+    console.error("Fetch Orders Error:", error);
+
+    res.status(500).json({
+      message: "Failed to fetch orders",
       error: error.message,
     });
   }

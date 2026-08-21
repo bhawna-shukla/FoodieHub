@@ -9,16 +9,17 @@ import { useNavigate } from "react-router-dom";
 const Checkout = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState("cod");
   const user = JSON.parse(localStorage.getItem("user"));
   const { cartItems, clearCart } = useContext(CartContext);
   const [formData, setFormData] = useState({
-  name: user?.name || "",
-  phone: user?.phone || "",
-  address: "",
-  city: "",
-  state: "",
-  pincode: "",
-});
+    name: user?.name || "",
+    phone: user?.phone || "",
+    address: "",
+    city: "",
+    state: "",
+    pincode: "",
+  });
 
   const [error, setError] = useState("");
 
@@ -35,85 +36,85 @@ const Checkout = () => {
 
   const total = subtotal + delivery + tax - discount;
   const handlePlaceOrder = async () => {
-  if (
-    !formData.name ||
-    !formData.phone ||
-    !formData.address ||
-    !formData.city ||
-    !formData.state ||
-    !formData.pincode
-  ) {
-    setError("⚠ Please fill all delivery details");
-    return;
-  }
-
-  setError("");
-  setLoading(true);
-
-  try {
-    const user = JSON.parse(localStorage.getItem("user"));
-
-    if (!user || !user._id) {
-      setError("Please login again.");
-      setLoading(false);
+    if (
+      !formData.name ||
+      !formData.phone ||
+      !formData.address ||
+      !formData.city ||
+      !formData.state ||
+      !formData.pincode
+    ) {
+      setError("⚠ Please fill all delivery details");
       return;
     }
 
-    const orderData = {
-      userId: user._id,
+    setError("");
+    setLoading(true);
 
-      customerName: formData.name,
-      phone: formData.phone,
-      address: formData.address,
-      city: formData.city,
-      state: formData.state,
-      pincode: formData.pincode,
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
 
-      items: cartItems.map((item) => ({
-        name: item.name,
-        price: item.price,
-        quantity: item.quantity,
-      })),
-
-      subtotal,
-      delivery,
-      tax,
-      discount,
-      total,
-
-      paymentMethod: "cod",
-    };
-
-    const response = await fetch(
-      "http://localhost:5000/api/orders",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(orderData),
+      if (!user || !user._id) {
+        setError("Please login again.");
+        setLoading(false);
+        return;
       }
-    );
 
-    const data = await response.json();
+      const orderData = {
+        userId: user._id,
 
-    console.log("Order Response:", data);
+        customerName: formData.name,
+        phone: formData.phone,
+        address: formData.address,
+        city: formData.city,
+        state: formData.state,
+        pincode: formData.pincode,
 
-    if (!response.ok) {
-      setError(data.message || "Order failed");
+        items: cartItems.map((item) => ({
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+        })),
+
+        subtotal,
+        delivery,
+        tax,
+        discount,
+        total,
+
+        paymentMethod: paymentMethod,
+      };
+
+      const response = await fetch(
+        "http://localhost:5000/api/orders",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(orderData),
+        }
+      );
+
+      const data = await response.json();
+
+      console.log("Order Response:", data);
+
+      if (!response.ok) {
+        setError(data.message || "Order failed");
+        setLoading(false);
+        return;
+      }
+
+      clearCart();
+      navigate("/order-success");
+
+    } catch (error) {
+      console.error("Order Error:", error);
+      setError("Unable to connect to server");
       setLoading(false);
-      return;
     }
-
-    clearCart();
-    navigate("/order-success");
-
-  } catch (error) {
-    console.error("Order Error:", error);
-    setError("Unable to connect to server");
-    setLoading(false);
-  }
-};
+  };
   return (
     <>
       <Navbar />
@@ -155,7 +156,7 @@ const Checkout = () => {
               }
             />
 
-            
+
             <input
               type="text"
               placeholder="City"
@@ -164,7 +165,7 @@ const Checkout = () => {
                 setFormData({ ...formData, city: e.target.value })
               }
             />
-            
+
 
             <input
               type="text"
@@ -226,7 +227,8 @@ const Checkout = () => {
                   type="radio"
                   name="payment"
                   value="cod"
-                  defaultChecked
+                  checked={paymentMethod === "cod"}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
                 />
                 Cash on Delivery
               </label>
@@ -236,6 +238,8 @@ const Checkout = () => {
                   type="radio"
                   name="payment"
                   value="upi"
+                  checked={paymentMethod === "upi"}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
                 />
                 UPI
               </label>
@@ -245,6 +249,8 @@ const Checkout = () => {
                   type="radio"
                   name="payment"
                   value="card"
+                  checked={paymentMethod === "card"}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
                 />
                 Credit / Debit Card
               </label>
@@ -255,12 +261,12 @@ const Checkout = () => {
               </p>
             )}
             <button
-  className="payment-btn"
-  disabled={loading}
-  onClick={handlePlaceOrder}
->
-  {loading ? "Placing Order..." : "Place Order"}
-</button>
+              className="payment-btn"
+              disabled={loading}
+              onClick={handlePlaceOrder}
+            >
+              {loading ? "Placing Order..." : "Place Order"}
+            </button>
           </div>
 
 
