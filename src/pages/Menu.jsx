@@ -7,7 +7,7 @@ import FoodCard from "../componenets/FoodCard/FoodCard";
 import MenuSearch from "../componenets/MenuSearch/MenuSearch";
 import Footer from "../componenets/Footer/Footer";
 
-import foodData from "../data/foodData";
+import foodData from "../data/FoodData";
 
 const Menu = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");

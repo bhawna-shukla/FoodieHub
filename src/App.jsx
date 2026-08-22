@@ -16,6 +16,7 @@ import MyOrders from "./pages/MyOrders";
 import AdminOrders from "./pages/AdminOrders";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminCustomers from "./pages/AdminCustomers";
+import AdminMenu from "./pages/AdminMenu";
 
 
 
@@ -34,6 +35,7 @@ function App() {
           <Route path="/admin/orders" element={<AdminOrders />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
          <Route path="/admin/customers" element={<AdminCustomers />} />
+         <Route path="/admin/menu" element={<AdminMenu />} />
           <Route
             path="/checkout"
             element={

@@ -1,5 +1,5 @@
 import "./PopularDishes.css";
-import foodData from "../../data/foodData";
+import foodData from "../../data/FoodData";
 import { Link } from "react-router-dom";
 import burger  from "../../assets/menu/grilled-chicken-burger.jpg";
 import pizza  from "../../assets/menu/veg-supreme-pizza.jpg";
