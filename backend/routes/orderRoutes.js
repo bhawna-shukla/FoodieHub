@@ -25,7 +25,6 @@ router.post("/", async (req, res) => {
       paymentMethod,
     } = req.body;
 
-    // Check required fields
     if (
       !userId ||
       !customerName ||
@@ -42,7 +41,6 @@ router.post("/", async (req, res) => {
       });
     }
 
-    // Create order
     const newOrder = new Order({
       userId,
       customerName,
@@ -66,7 +64,6 @@ router.post("/", async (req, res) => {
       message: "Order placed successfully",
       order: newOrder,
     });
-
   } catch (error) {
     console.error("Order Error:", error);
 
@@ -92,12 +89,58 @@ router.get("/user/:userId", async (req, res) => {
       message: "Orders fetched successfully",
       orders,
     });
-
   } catch (error) {
     console.error("Fetch Orders Error:", error);
 
     res.status(500).json({
       message: "Failed to fetch orders",
+      error: error.message,
+    });
+  }
+});
+
+// ==========================
+// UPDATE ORDER STATUS API
+// ==========================
+router.put("/:orderId/status", async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const { status } = req.body;
+
+    const allowedStatuses = [
+      "Placed",
+      "Confirmed",
+      "Preparing",
+      "Delivered",
+    ];
+
+    if (!allowedStatuses.includes(status)) {
+      return res.status(400).json({
+        message: "Invalid order status",
+      });
+    }
+
+    const updatedOrder = await Order.findByIdAndUpdate(
+      orderId,
+      { status },
+      { new: true }
+    );
+
+    if (!updatedOrder) {
+      return res.status(404).json({
+        message: "Order not found",
+      });
+    }
+
+    res.status(200).json({
+      message: "Order status updated successfully",
+      order: updatedOrder,
+    });
+  } catch (error) {
+    console.error("Update Status Error:", error);
+
+    res.status(500).json({
+      message: "Failed to update order status",
       error: error.message,
     });
   }
