@@ -98,6 +98,30 @@ router.get("/user/:userId", async (req, res) => {
     });
   }
 });
+// ==========================
+// GET ALL ORDERS API
+// ==========================
+router.get("/", async (req, res) => {
+  try {
+    const orders = await Order.find().sort({
+      createdAt: -1,
+    });
+
+    res.status(200).json({
+      message: "All orders fetched successfully",
+      orders,
+    });
+  } catch (error) {
+    console.error("Fetch All Orders Error:", error);
+
+    res.status(500).json({
+      message: "Failed to fetch all orders",
+      error: error.message,
+    });
+  }
+});
+
+
 
 // ==========================
 // UPDATE ORDER STATUS API
@@ -112,6 +136,7 @@ router.put("/:orderId/status", async (req, res) => {
       "Confirmed",
       "Preparing",
       "Delivered",
+      "Cancelled",
     ];
 
     if (!allowedStatuses.includes(status)) {

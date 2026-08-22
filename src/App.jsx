@@ -13,6 +13,10 @@ import ProtectedRoute from "./componenets/ProtectedRoute";
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
 import MyOrders from "./pages/MyOrders";
+import AdminOrders from "./pages/AdminOrders";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminCustomers from "./pages/AdminCustomers";
+
 
 
 function App() {
@@ -27,6 +31,9 @@ function App() {
           <Route path="/gallery" element={<GallerySection />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/admin/orders" element={<AdminOrders />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+         <Route path="/admin/customers" element={<AdminCustomers />} />
           <Route
             path="/checkout"
             element={

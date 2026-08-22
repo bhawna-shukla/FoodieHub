@@ -1,0 +1,203 @@
+.admin-customers {
+  min-height: calc(100vh - 140px);
+  padding: 110px 40px 50px;
+  background: #f8f9fb;
+}
+
+/* Header */
+.customers-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.customers-header h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: #222;
+}
+
+.customers-header p {
+  margin-top: 8px;
+  color: #777;
+  font-size: 15px;
+}
+
+/* Customer Count */
+.customer-count {
+  background: white;
+  padding: 15px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  min-width: 130px;
+}
+
+.customer-count span {
+  display: block;
+  font-size: 26px;
+  font-weight: 700;
+  color: #ff6b35;
+}
+
+.customer-count small {
+  color: #777;
+  font-size: 13px;
+}
+
+/* Table Container */
+.customers-table-container {
+  width: 100%;
+  background: white;
+  border-radius: 15px;
+  overflow-x: auto;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Table */
+.customers-table {
+  width: 100%;
+  min-width: 1000px;
+  border-collapse: collapse;
+}
+
+.customers-table th {
+  background: #fff4ef;
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 17px 15px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.customers-table td {
+  padding: 16px 15px;
+  border-bottom: 1px solid #eee;
+  color: #555;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.customers-table tbody tr:hover {
+  background: #fffaf7;
+}
+
+/* Customer Name */
+.customer-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #333;
+}
+
+.customer-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ff6b35;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* Orders Badge */
+.orders-badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: 8px;
+  background: #fff1eb;
+  color: #ff6b35;
+  font-weight: 600;
+}
+
+/* Status */
+.status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge.active {
+  background: #e8f8ee;
+  color: #1b8a4b;
+}
+
+.status-badge.inactive {
+  background: #f1f1f1;
+  color: #777;
+}
+
+/* No Customers */
+.no-customers {
+  text-align: center;
+  padding: 40px !important;
+  color: #999 !important;
+  font-size: 15px;
+}
+
+/* Scrollbar */
+.customers-table-container::-webkit-scrollbar {
+  height: 7px;
+}
+
+.customers-table-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .admin-customers {
+    padding: 100px 25px 40px;
+  }
+
+  .customers-header h1 {
+    font-size: 28px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .admin-customers {
+    padding: 90px 15px 30px;
+  }
+
+  .customers-header {
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .customers-header h1 {
+    font-size: 24px;
+  }
+
+  .customers-header p {
+    font-size: 13px;
+  }
+
+  .customer-count {
+    padding: 10px 15px;
+    min-width: 90px;
+  }
+
+  .customer-count span {
+    font-size: 22px;
+  }
+
+  .customer-count small {
+    font-size: 11px;
+  }
+}

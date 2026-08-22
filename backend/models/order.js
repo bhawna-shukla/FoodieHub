@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema(
+
+  
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -87,15 +89,28 @@ const orderSchema = new mongoose.Schema(
       required: true,
     },
 
+     // ORDER STATUS
     status: {
       type: String,
+      enum: [
+        "Placed",
+        "Confirmed",
+        "Preparing",
+        "Delivered",
+        "Cancelled",
+      ],
       default: "Placed",
     },
   },
+  
   {
     timestamps: true,
   }
 );
+
+
+
+
 
 const Order = mongoose.model("Order", orderSchema);
 

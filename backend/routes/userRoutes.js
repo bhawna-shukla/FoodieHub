@@ -115,4 +115,27 @@ res.status(200).json({
   }
 });
 
+// ==========================
+// GET ALL CUSTOMERS API
+// ==========================
+router.get("/customers", async (req, res) => {
+  try {
+    const customers = await User.find()
+      .select("-password")
+      .sort({ createdAt: -1 });
+
+    res.status(200).json({
+      message: "Customers fetched successfully",
+      customers,
+    });
+  } catch (error) {
+    console.error("Fetch Customers Error:", error);
+
+    res.status(500).json({
+      message: "Failed to fetch customers",
+      error: error.message,
+    });
+  }
+});
+
 module.exports = router;
