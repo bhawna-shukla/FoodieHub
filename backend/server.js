@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 const userRoutes = require("./routes/userRoutes");
+const foodRoutes = require("./routes/foodRoutes");
 
 const app = express();
 
@@ -25,6 +26,8 @@ app.use("/api/orders", orderRoutes);
 app.get("/", (req, res) => {
   res.send("FoodieHub Backend is running!");
 });
+// food Routes
+app.use("/api/foods", foodRoutes);
 
 // MongoDB Connection
 mongoose

@@ -1,11 +1,145 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Navbar from "../componenets/Navbar/Navbar";
 import Footer from "../componenets/Footer/Footer";
-import foodData from "../data/FoodData";
 import "./AdminMenu.css";
 
+import margheritaPizza from "../assets/menu/margherita-pizza.jpg";
+import cheesburst from "../assets/menu/cheese-burst-pizza.jpg";
+import farmhousePizza from "../assets/menu/farmhouse-pizza.jpg";
+import vegPizza from "../assets/menu/veg-supreme-pizza.jpg";
+import pepperoni from "../assets/menu/pepperoni-pizza.jpg";
+
+import classicCheeseBurger from "../assets/menu/classic-cheese-burger.jpg";
+import crispyChickenBurger from "../assets/menu/crispy-chicken-burger.jpg";
+import doublePartyBurger from "../assets/menu/double-party-burger.jpg";
+import grilledChickenBurger from "../assets/menu/grilled-chicken-burger.jpg";
+
+import butterMasalaPasta from "../assets/menu/butter-masala-pasta.jpg";
+import italianAlfredoPasta from "../assets/menu/italian-alfredo-pasta.jpg";
+import paneerTikkaPasta from "../assets/menu/paneer-tikka-pasta.jpg";
+import cheeseMasalaPasta from "../assets/menu/cheese-masala-pasta.jpg";
+
+import cucumberSalad from "../assets/menu/cucumber-tomato-salad.jpg";
+import paneerTikkaSalad from "../assets/menu/paneer-tikka-salad.jpg";
+import cornVeggie from "../assets/menu/corn-veggie-salad.jpg";
+
+import strawberryMilkshake from "../assets/menu/strawberry-milkshake.jpg";
+import oreoShake from "../assets/menu/oreo-shake.jpg";
+import blueMocktail from "../assets/menu/blue-mocktail.jpg";
+import cappuccino from "../assets/menu/cappuccino.jpg";
+
+import chocolateLavaCake from "../assets/menu/chocolate-lava-cake.jpg";
+import caramelPudding from "../assets/menu/caramel-pudding.jpg";
+import mangoMousse from "../assets/menu/mango-mousse.jpg";
+import rasmalai from "../assets/menu/rasmalai.jpg";
+import strawberryCake from "../assets/menu/strawberry-cheesecake.jpg";
+
+
+const foodImages = [
+  {
+    name: "Margherita Pizza",
+    image: margheritaPizza,
+  },
+  {
+    name: "Cheese Burst Pizza",
+    image: cheesburst,
+  },
+  {
+    name: "Farmhouse Pizza",
+    image: farmhousePizza,
+  },
+  {
+    name: "Veg Supreme Pizza",
+    image: vegPizza,
+  },
+  {
+    name: "Pepperoni Pizza",
+    image: pepperoni,
+  },
+  {
+    name: "Classic Cheese Burger",
+    image: classicCheeseBurger,
+  },
+  {
+    name: "Crispy Chicken Burger",
+    image: crispyChickenBurger,
+  },
+  {
+    name: "Double Party Burger",
+    image: doublePartyBurger,
+  },
+  {
+    name: "Grilled Chicken Burger",
+    image: grilledChickenBurger,
+  },
+  {
+    name: "Butter Masala Pasta",
+    image: butterMasalaPasta,
+  },
+  {
+    name: "Italian Alfredo Pasta",
+    image: italianAlfredoPasta,
+  },
+  {
+    name: "Paneer Tikka Pasta",
+    image: paneerTikkaPasta,
+  },
+  {
+    name: "Cheese Masala Pasta",
+    image: cheeseMasalaPasta,
+  },
+  {
+    name: "Cucumber Tomato Salad",
+    image: cucumberSalad,
+  },
+  {
+    name: "Paneer Tikka Salad",
+    image: paneerTikkaSalad,
+  },
+  {
+    name: "Corn Veggie Salad",
+    image: cornVeggie,
+  },
+  {
+    name: "Strawberry Milkshake",
+    image: strawberryMilkshake,
+  },
+  {
+    name: "Oreo Shake",
+    image: oreoShake,
+  },
+  {
+    name: "Blue Mocktail",
+    image: blueMocktail,
+  },
+  {
+    name: "Cappuccino Coffee",
+    image: cappuccino,
+  },
+  {
+    name: "Chocolate Lava Cake",
+    image: chocolateLavaCake,
+  },
+  {
+    name: "Caramel Pudding",
+    image: caramelPudding,
+  },
+  {
+    name: "Mango Mousse",
+    image: mangoMousse,
+  },
+  {
+    name: "Rasmalai",
+    image: rasmalai,
+  },
+  {
+    name: "Strawberry Cheese Cake",
+    image: strawberryCake,
+  },
+];
+
 const AdminMenu = () => {
-  const [foods, setFoods] = useState(foodData);
+  const [foods, setFoods] = useState([]);
 
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
@@ -35,6 +169,31 @@ const AdminMenu = () => {
     (item) => item !== "All"
   );
 
+  // =========================
+  // GET ALL FOODS
+  // =========================
+  useEffect(() => {
+    fetch("http://localhost:5000/api/foods")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch foods");
+        }
+
+        return response.json();
+      })
+      .then((data) => {
+        if (data.success) {
+          setFoods(data.foods);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching foods:", error);
+      });
+  }, []);
+
+  // =========================
+  // SEARCH + CATEGORY FILTER
+  // =========================
   const filteredFood = useMemo(() => {
     return foods.filter((food) => {
       const matchesSearch = food.name
@@ -48,7 +207,9 @@ const AdminMenu = () => {
     });
   }, [foods, search, category]);
 
-  // Input change
+  // =========================
+  // INPUT CHANGE
+  // =========================
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -58,7 +219,9 @@ const AdminMenu = () => {
     }));
   };
 
-  // Open Add Form
+  // =========================
+  // OPEN ADD FORM
+  // =========================
   const openAddForm = () => {
     setEditingFood(null);
 
@@ -73,7 +236,9 @@ const AdminMenu = () => {
     setShowForm(true);
   };
 
-  // Open Edit Form
+  // =========================
+  // OPEN EDIT FORM
+  // =========================
   const openEditForm = (food) => {
     setEditingFood(food);
 
@@ -81,15 +246,17 @@ const AdminMenu = () => {
       name: food.name,
       category: food.category,
       price: food.price,
-      rating: food.rating,
+      rating: food.rating || "",
       image: food.image,
     });
 
     setShowForm(true);
   };
 
-  // Add / Update Food
-  const handleSubmit = (e) => {
+  // =========================
+  // ADD / UPDATE FOOD
+  // =========================
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (
@@ -102,42 +269,84 @@ const AdminMenu = () => {
       return;
     }
 
-    // UPDATE
-    if (editingFood) {
-      setFoods((previous) =>
-        previous.map((food) =>
-          food.id === editingFood.id
-            ? {
-                ...food,
-                name: formData.name,
-                category: formData.category,
-                price: Number(formData.price),
-                rating: Number(formData.rating),
-                image: formData.image,
-              }
-            : food
-        )
-      );
+    const foodData = {
+      name: formData.name,
+      category: formData.category,
+      price: Number(formData.price),
+      rating: Number(formData.rating),
+      image: formData.image,
+    };
+
+    try {
+      // =========================
+      // UPDATE
+      // =========================
+      if (editingFood) {
+        const response = await fetch(
+          `http://localhost:5000/api/foods/${editingFood._id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(foodData),
+          }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to update food");
+        }
+
+        setFoods((previous) =>
+          previous.map((food) =>
+            food._id === editingFood._id ? data.food : food
+          )
+        );
+
+        alert("Food updated successfully!");
+      }
+
+      // =========================
+      // ADD
+      // =========================
+      else {
+        const response = await fetch(
+          "http://localhost:5000/api/foods",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(foodData),
+          }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to add food");
+        }
+
+        setFoods((previous) => [
+          data.food,
+          ...previous,
+        ]);
+
+        alert("Food added successfully!");
+      }
+
+      closeForm();
+    } catch (error) {
+      console.error("Food operation error:", error);
+      alert(error.message);
     }
-
-    // ADD
-    else {
-      const newFood = {
-        id: Date.now(),
-        name: formData.name,
-        category: formData.category,
-        price: Number(formData.price),
-        rating: Number(formData.rating),
-        image: formData.image,
-      };
-
-      setFoods((previous) => [...previous, newFood]);
-    }
-
-    closeForm();
   };
 
-  // Close Form
+  // =========================
+  // CLOSE FORM
+  // =========================
   const closeForm = () => {
     setShowForm(false);
     setEditingFood(null);
@@ -151,8 +360,10 @@ const AdminMenu = () => {
     });
   };
 
-  // Delete Food
-  const handleDelete = (food) => {
+  // =========================
+  // DELETE FOOD
+  // =========================
+  const handleDelete = async (food) => {
     const confirmDelete = window.confirm(
       `Are you sure you want to delete "${food.name}"?`
     );
@@ -161,9 +372,31 @@ const AdminMenu = () => {
       return;
     }
 
-    setFoods((previous) =>
-      previous.filter((item) => item.id !== food.id)
-    );
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/foods/${food._id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.message || "Failed to delete food"
+        );
+      }
+
+      setFoods((previous) =>
+        previous.filter((item) => item._id !== food._id)
+      );
+
+      alert("Food deleted successfully!");
+    } catch (error) {
+      console.error("Delete error:", error);
+      alert(error.message);
+    }
   };
 
   return (
@@ -260,7 +493,7 @@ const AdminMenu = () => {
 
                 filteredFood.map((food, index) => (
 
-                  <tr key={food.id}>
+                  <tr key={food._id}>
 
                     <td>{index + 1}</td>
 
@@ -296,7 +529,9 @@ const AdminMenu = () => {
 
                     <td>
                       <span className="food-status active">
-                        Available
+                        {food.available
+                          ? "Available"
+                          : "Unavailable"}
                       </span>
                     </td>
 
@@ -464,7 +699,7 @@ const AdminMenu = () => {
 
                   </div>
 
-                  <div className="form-group">
+                  {/* <div className="form-group">
 
                     <label>Image URL</label>
 
@@ -476,8 +711,30 @@ const AdminMenu = () => {
                       onChange={handleInputChange}
                     />
 
-                  </div>
+                  </div> */}
 
+
+
+                  <div className="form-group">
+
+                    <label>Food Image</label>
+
+                    <select
+                      name="image"
+                      value={formData.image}
+                      onChange={handleInputChange}
+                    >
+                      <option value="">Select Food Image</option>
+
+                      {foodImages.map((item) => (
+                        <option key={item.name} value={item.image}>
+                          {item.name}
+                        </option>
+                      ))}
+
+                    </select>
+
+                  </div>
                 </div>
 
                 <div className="modal-actions">

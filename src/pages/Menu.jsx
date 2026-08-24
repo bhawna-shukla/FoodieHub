@@ -1,4 +1,5 @@
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 
 import Navbar from "../componenets/Navbar/Navbar";
 import MenuHero from "../componenets/MenuHero/MenuHero";
@@ -7,11 +8,12 @@ import FoodCard from "../componenets/FoodCard/FoodCard";
 import MenuSearch from "../componenets/MenuSearch/MenuSearch";
 import Footer from "../componenets/Footer/Footer";
 
-import foodData from "../data/FoodData";
+// import foodData from "../data/FoodData";
 
 const Menu = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [search, setSearch] = useState("");
+  const [foods, setFoods] = useState([]);
 
   const categories = [
     "All",
@@ -23,7 +25,26 @@ const Menu = () => {
     "Dessert",
   ];
 
-  const filteredFood = foodData.filter((item) => {
+  // Get foods from backend
+  useEffect(() => {
+    const fetchFoods = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/foods");
+        const data = await response.json();
+
+        if (data.success) {
+          setFoods(data.foods);
+        }
+      } catch (error) {
+        console.error("Error fetching foods:", error);
+      }
+    };
+
+    fetchFoods();
+  }, []);
+
+  // Search + Category Filter
+  const filteredFood = foods.filter((item) => {
     const matchCategory =
       selectedCategory === "All" ||
       item.category === selectedCategory;
@@ -55,7 +76,10 @@ const Menu = () => {
       <section className="food-section">
         <div className="food-grid">
           {filteredFood.map((food) => (
-            <FoodCard key={food.id} food={food} />
+            <FoodCard
+              key={food._id}
+              food={food}
+            />
           ))}
         </div>
       </section>
@@ -66,3 +90,4 @@ const Menu = () => {
 };
 
 export default Menu;
+

@@ -7,38 +7,48 @@ const CartProvider = ({ children }) => {
 
   // Add to Cart
   const addToCart = (food) => {
-    const existingItem = cartItems.find((item) => item.id === food.id);
-
-    if (existingItem) {
-      setCartItems(
-        cartItems.map((item) =>
-          item.id === food.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
+    setCartItems((previous) => {
+      const existingItem = previous.find(
+        (item) => item._id === food._id
       );
-    } else {
-      setCartItems([
-        ...cartItems,
+
+      if (existingItem) {
+        return previous.map((item) =>
+          item._id === food._id
+            ? {
+                ...item,
+                quantity: item.quantity + 1,
+              }
+            : item
+        );
+      }
+
+      return [
+        ...previous,
         {
           ...food,
           quantity: 1,
         },
-      ]);
-    }
+      ];
+    });
   };
 
   // Remove Item
   const removeFromCart = (id) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
+    setCartItems((previous) =>
+      previous.filter((item) => item._id !== id)
+    );
   };
 
   // Increase Quantity
   const increaseQuantity = (id) => {
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === id
-          ? { ...item, quantity: item.quantity + 1 }
+    setCartItems((previous) =>
+      previous.map((item) =>
+        item._id === id
+          ? {
+              ...item,
+              quantity: item.quantity + 1,
+            }
           : item
       )
     );
@@ -46,16 +56,23 @@ const CartProvider = ({ children }) => {
 
   // Decrease Quantity
   const decreaseQuantity = (id) => {
-    setCartItems(
-      cartItems
+    setCartItems((previous) =>
+      previous
         .map((item) =>
-          item.id === id
-            ? { ...item, quantity: item.quantity - 1 }
+          item._id === id
+            ? {
+                ...item,
+                quantity: item.quantity - 1,
+              }
             : item
         )
         .filter((item) => item.quantity > 0)
     );
   };
+
+  // Navbar Badge
+  // Different food items ka count
+  const cartCount = cartItems.length;
 
   // Clear Cart
   const clearCart = () => {
@@ -66,6 +83,7 @@ const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         cartItems,
+        cartCount,
         addToCart,
         removeFromCart,
         increaseQuantity,

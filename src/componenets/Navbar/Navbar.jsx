@@ -10,7 +10,7 @@ const Navbar = () => {
     JSON.parse(localStorage.getItem("user"))
   );
 
-  const { cartItems } = useContext(CartContext);
+const { cartItems, cartCount } = useContext(CartContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -64,11 +64,11 @@ const Navbar = () => {
           <Link to="/cart" className="cart-link">
             <FaShoppingCart className="cart-icon" />
 
-            {cartItems.length > 0 && (
-              <span className="cart-count">
-                {cartItems.length}
-              </span>
-            )}
+           {cartCount > 0 && (
+  <span className="cart-count">
+    {cartCount}
+  </span>
+)}
           </Link>
         </div>
 
