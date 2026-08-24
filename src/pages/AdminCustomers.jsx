@@ -153,24 +153,25 @@ const AdminCustomers = () => {
 
                     <td>
                       <span className="orders-badge">
-                        {customer.orders || 0}
+                        {customer.totalOrders || 0}
                       </span>
                     </td>
 
                     <td>
-                      ₹{customer.spent || 0}
+                      ₹{customer.totalSpent || 0}
                     </td>
 
                     <td>
-                      {customer.joined || "N/A"}
+                      {customer.createdAt
+                        ? new Date(customer.createdAt).toLocaleDateString("en-IN")
+                        : "N/A"}
                     </td>
 
                     <td>
 
                       <span
-                        className={`status-badge ${
-                          (customer.status || "Active").toLowerCase()
-                        }`}
+                        className={`status-badge ${(customer.status || "Active").toLowerCase()
+                          }`}
                       >
                         {customer.status || "Active"}
                       </span>

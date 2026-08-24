@@ -1,5 +1,6 @@
 const express = require("express");
 const User = require("../models/User");
+const Order = require("../models/Order");
 const bcrypt = require("bcrypt");
 
 const router = express.Router();
@@ -124,9 +125,33 @@ router.get("/customers", async (req, res) => {
       .select("-password")
       .sort({ createdAt: -1 });
 
+    const customersWithOrders = await Promise.all(
+      customers.map(async (customer) => {
+        // Find all orders of this customer
+        const orders = await Order.find({
+          userId: customer._id,
+        });
+
+        // Total number of orders
+        const totalOrders = orders.length;
+
+        // Total amount spent
+        const totalSpent = orders.reduce(
+          (sum, order) => sum + Number(order.total || 0),
+          0
+        );
+
+        return {
+          ...customer.toObject(),
+          totalOrders,
+          totalSpent,
+        };
+      })
+    );
+
     res.status(200).json({
       message: "Customers fetched successfully",
-      customers,
+      customers: customersWithOrders,
     });
   } catch (error) {
     console.error("Fetch Customers Error:", error);
