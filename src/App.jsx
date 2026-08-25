@@ -17,7 +17,7 @@ import AdminOrders from "./pages/AdminOrders";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminCustomers from "./pages/AdminCustomers";
 import AdminMenu from "./pages/AdminMenu";
-
+import AdminReports from "./pages/AdminReports";
 
 
 function App() {
@@ -34,8 +34,8 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/admin/orders" element={<AdminOrders />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
-         <Route path="/admin/customers" element={<AdminCustomers />} />
-         <Route path="/admin/menu" element={<AdminMenu />} />
+          <Route path="/admin/customers" element={<AdminCustomers />} />
+          <Route path="/admin/menu" element={<AdminMenu />} />
           <Route
             path="/checkout"
             element={
@@ -47,7 +47,10 @@ function App() {
           <Route path="/order-success" element={<OrderSuccess />} />
           <Route path="/about" element={<About />} />
           <Route path="/my-orders" element={<MyOrders />} />
-        </Routes>
+          <Route
+            path="/admin/reports"
+            element={<AdminReports />}
+          />        </Routes>
       </BrowserRouter>
     </CartProvider>
   );
