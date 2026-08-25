@@ -1,5 +1,5 @@
 import "./AdminDashboard.css";
-import Navbar from "../componenets/Navbar/Navbar";
+import AdminNavbar from "../componenets/AdminNavbar/AdminNavbar";
 import Footer from "../componenets/Footer/Footer";
 import { useEffect, useMemo, useState } from "react";
 
@@ -148,7 +148,7 @@ const AdminDashboard = () => {
 
   return (
     <>
-      <Navbar />
+       <AdminNavbar />
 
       <main className="admin-dashboard">
 

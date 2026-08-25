@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import Navbar from "../componenets/Navbar/Navbar";
+import Navbar from "../componenets/AdminNavbar/AdminNavbar";
 import Footer from "../componenets/Footer/Footer";
 import "./AdminMenu.css";
 

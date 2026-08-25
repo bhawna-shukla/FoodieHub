@@ -12,14 +12,12 @@ router.post("/signup", async (req, res) => {
   try {
     const { name, email, phone, password } = req.body;
 
-    // Check required fields
     if (!name || !email || !phone || !password) {
       return res.status(400).json({
         message: "All fields are required",
       });
     }
 
-    // Check if email already exists
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
@@ -28,10 +26,8 @@ router.post("/signup", async (req, res) => {
       });
     }
 
-    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create user
     const newUser = new User({
       name,
       email,
@@ -41,7 +37,6 @@ router.post("/signup", async (req, res) => {
 
     await newUser.save();
 
-    // Success response
     res.status(201).json({
       message: "User registered successfully",
       user: {
@@ -67,14 +62,12 @@ router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Check required fields
     if (!email || !password) {
       return res.status(400).json({
         message: "Email and password are required",
       });
     }
 
-    // Find user
     const user = await User.findOne({ email });
 
     if (!user) {
@@ -83,7 +76,6 @@ router.post("/login", async (req, res) => {
       });
     }
 
-    // Compare password
     const isPasswordCorrect = await bcrypt.compare(
       password,
       user.password
@@ -95,22 +87,75 @@ router.post("/login", async (req, res) => {
       });
     }
 
-   // Login success
-res.status(200).json({
-  message: "Login successful",
-  user: {
-    _id: user._id,
-    name: user.name,
-    email: user.email,
-    phone: user.phone,
-  },
-});
-
+    // Login success
+    res.status(200).json({
+      message: "Login successful",
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        role: user.role,
+      },
+    });
   } catch (error) {
     console.error("Login Error:", error);
 
     res.status(500).json({
       message: "Server error",
+      error: error.message,
+    });
+  }
+});
+
+// ==========================
+// CREATE ADMIN API
+// ==========================
+router.post("/create-admin", async (req, res) => {
+  try {
+    const { name, email, phone, password } = req.body;
+
+    if (!name || !email || !phone || !password) {
+      return res.status(400).json({
+        message: "All fields are required",
+      });
+    }
+
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      return res.status(400).json({
+        message: "Email already registered",
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newAdmin = new User({
+      name,
+      email,
+      phone,
+      password: hashedPassword,
+      role: "admin",
+    });
+
+    await newAdmin.save();
+
+    res.status(201).json({
+      message: "Admin created successfully",
+      admin: {
+        _id: newAdmin._id,
+        name: newAdmin.name,
+        email: newAdmin.email,
+        phone: newAdmin.phone,
+        role: newAdmin.role,
+      },
+    });
+  } catch (error) {
+    console.error("Create Admin Error:", error);
+
+    res.status(500).json({
+      message: "Failed to create admin",
       error: error.message,
     });
   }
@@ -127,15 +172,12 @@ router.get("/customers", async (req, res) => {
 
     const customersWithOrders = await Promise.all(
       customers.map(async (customer) => {
-        // Find all orders of this customer
         const orders = await Order.find({
           userId: customer._id,
         });
 
-        // Total number of orders
         const totalOrders = orders.length;
 
-        // Total amount spent
         const totalSpent = orders.reduce(
           (sum, order) => sum + Number(order.total || 0),
           0

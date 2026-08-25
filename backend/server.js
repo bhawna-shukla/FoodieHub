@@ -29,6 +29,8 @@ app.get("/", (req, res) => {
 // food Routes
 app.use("/api/foods", foodRoutes);
 
+
+
 // MongoDB Connection
 mongoose
   .connect(process.env.MONGO_URI)

@@ -18,6 +18,8 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AdminCustomers from "./pages/AdminCustomers";
 import AdminMenu from "./pages/AdminMenu";
 import AdminReports from "./pages/AdminReports";
+import AdminLogin from "./pages/AdminLogin";
+
 
 
 function App() {
@@ -50,7 +52,12 @@ function App() {
           <Route
             path="/admin/reports"
             element={<AdminReports />}
-          />        </Routes>
+          />
+          <Route
+            path="/admin/login"
+            element={<AdminLogin />}
+          />
+        </Routes>
       </BrowserRouter>
     </CartProvider>
   );
