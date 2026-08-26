@@ -162,6 +162,49 @@ router.post("/create-admin", async (req, res) => {
 });
 
 // ==========================
+// RESET ADMIN PASSWORD API
+// ==========================
+router.put("/reset-admin-password", async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+
+    if (!email || !newPassword) {
+      return res.status(400).json({
+        message: "Email and new password are required",
+      });
+    }
+
+    const admin = await User.findOne({
+      email,
+      role: "admin",
+    });
+
+    if (!admin) {
+      return res.status(404).json({
+        message: "Admin not found",
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    admin.password = hashedPassword;
+
+    await admin.save();
+
+    res.status(200).json({
+      message: "Admin password reset successfully",
+    });
+  } catch (error) {
+    console.error("Reset Admin Password Error:", error);
+
+    res.status(500).json({
+      message: "Failed to reset admin password",
+      error: error.message,
+    });
+  }
+});
+
+// ==========================
 // GET ALL CUSTOMERS API
 // ==========================
 router.get("/customers", async (req, res) => {
@@ -204,5 +247,7 @@ router.get("/customers", async (req, res) => {
     });
   }
 });
+
+
 
 module.exports = router;
