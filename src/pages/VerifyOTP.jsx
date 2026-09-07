@@ -47,6 +47,7 @@ const VerifyOTP = () => {
 
       // OTP verified
       localStorage.setItem("otpVerified", "true");
+      localStorage.setItem("resetOTP", otp);
 
       setTimeout(() => {
         navigate("/reset-password");

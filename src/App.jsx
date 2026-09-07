@@ -12,6 +12,8 @@ import About from "./componenets/About/About";
 import ProtectedRoute from "./componenets/ProtectedRoute";
 import AdminProtectedRoute from "./componenets/ProtectedRoute/AdminProtectedRoute";
 import ForgotPassword from "./pages/ForgotPassword";
+import VerifyOTP from "./pages/VerifyOTP";
+import ResetPassword from "./pages/ResetPassword";
 
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
@@ -66,10 +68,7 @@ function App() {
             element={<OrderSuccess />}
           />
 
-          <Route
-  path="/forgot-password"
-  element={<ForgotPassword />}
-/>
+
 
           {/* =========================
               ADMIN LOGIN
@@ -128,7 +127,20 @@ function App() {
               </AdminProtectedRoute>
             }
           />
+          <Route
+            path="/forgot-password"
+            element={<ForgotPassword />}
+          />
 
+          <Route
+            path="/verify-otp"
+            element={<VerifyOTP />}
+          />
+
+          <Route
+            path="/reset-password"
+            element={<ResetPassword />}
+          />
         </Routes>
       </BrowserRouter>
     </CartProvider>

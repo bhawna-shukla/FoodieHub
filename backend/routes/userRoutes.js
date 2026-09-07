@@ -2,17 +2,19 @@ const express = require("express");
 const User = require("../models/User");
 const Order = require("../models/Order");
 const bcrypt = require("bcrypt");
-const nodemailer = require("nodemailer");
-
+const transporter = require("../config/mail");
+// const nodemailer = require("nodemailer");
 const router = express.Router();
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+
+// const transporter = nodemailer.createTransport({
+//   service: "gmail",
+//   auth: {
+//     user: process.env.EMAIL_USER,
+//     pass: process.env.EMAIL_PASS,
+//   },
+// });
+
 // ==========================
 // SIGNUP API
 // ==========================

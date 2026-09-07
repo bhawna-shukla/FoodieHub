@@ -39,7 +39,7 @@ const ForgotPassword = () => {
 
       // Save email and OTP temporarily
       localStorage.setItem("resetEmail", email);
-      localStorage.setItem("resetOTP", data.otp);
+      // localStorage.setItem("resetOTP", data.otp);
 
       setMessage("OTP sent successfully!");
 
