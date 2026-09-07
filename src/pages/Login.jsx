@@ -99,9 +99,12 @@ const Login = () => {
             </p>
           )}
 
-          <span className="forgot">
-            Forgot Password?
-          </span>
+         <span
+  className="forgot"
+  onClick={() => navigate("/forgot-password")}
+>
+  Forgot Password?
+</span>
 
           <p className="signup-text">
             Don't have an account?

@@ -11,6 +11,7 @@ import GallerySection from "./componenets/GallerySection/GallerySection";
 import About from "./componenets/About/About";
 import ProtectedRoute from "./componenets/ProtectedRoute";
 import AdminProtectedRoute from "./componenets/ProtectedRoute/AdminProtectedRoute";
+import ForgotPassword from "./pages/ForgotPassword";
 
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
@@ -64,6 +65,11 @@ function App() {
             path="/order-success"
             element={<OrderSuccess />}
           />
+
+          <Route
+  path="/forgot-password"
+  element={<ForgotPassword />}
+/>
 
           {/* =========================
               ADMIN LOGIN
