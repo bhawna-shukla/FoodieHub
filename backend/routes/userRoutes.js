@@ -1,6 +1,6 @@
 const express = require("express");
-const User = require("../models/User");
-const Order = require("../models/Order");
+const User = require("../models/user");
+const Order = require("../models/order");
 const bcrypt = require("bcrypt");
 const transporter = require("../config/mail");
 // const nodemailer = require("nodemailer");

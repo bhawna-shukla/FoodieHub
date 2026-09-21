@@ -1,11 +1,14 @@
+require("dotenv").config();
+
 const dns = require("dns");
 
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
-const orderRoutes = require("./routes/orderRoutes");
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-require("dotenv").config();
+
+const orderRoutes = require("./routes/orderRoutes");
 const userRoutes = require("./routes/userRoutes");
 const foodRoutes = require("./routes/foodRoutes");
 
@@ -32,6 +35,11 @@ app.use("/api/foods", foodRoutes);
 
 
 // MongoDB Connection
+
+
+console.log("MONGO_URI exists:", !!process.env.MONGO_URI);
+
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
