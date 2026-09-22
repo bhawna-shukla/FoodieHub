@@ -12,7 +12,7 @@ const AdminCustomers = () => {
     const fetchCustomers = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/users/customers"
+          `${import.meta.env.VITE_API_URL}/api/users/customers`
         );
 
         const data = await response.json();

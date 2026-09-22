@@ -37,7 +37,7 @@ app.use("/api/foods", foodRoutes);
 // MongoDB Connection
 
 
-console.log("MONGO_URI exists:", !!process.env.MONGO_URI);
+// console.log("MONGO_URI exists:", !!process.env.MONGO_URI);
 
 
 mongoose

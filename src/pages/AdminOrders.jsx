@@ -20,7 +20,7 @@ const AdminOrders = () => {
   const fetchOrders = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/orders"
+        `${import.meta.env.VITE_API_URL}/api/orders`
       );
 
       const data = await response.json();
@@ -48,7 +48,7 @@ const AdminOrders = () => {
       setUpdatingId(orderId);
 
       const response = await fetch(
-        `http://localhost:5000/api/orders/${orderId}/status`,
+        `${import.meta.env.VITE_API_URL}/api/orders/${orderId}/status`,
         {
           method: "PUT",
           headers: {

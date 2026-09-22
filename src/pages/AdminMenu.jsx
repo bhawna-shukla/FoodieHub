@@ -173,7 +173,7 @@ const AdminMenu = () => {
   // GET ALL FOODS
   // =========================
   useEffect(() => {
-    fetch("http://localhost:5000/api/foods")
+    fetch(`${import.meta.env.VITE_API_URL}/api/foods`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch foods");
@@ -283,7 +283,7 @@ const AdminMenu = () => {
       // =========================
       if (editingFood) {
         const response = await fetch(
-          `http://localhost:5000/api/foods/${editingFood._id}`,
+          `${import.meta.env.VITE_API_URL}/api/foods/${editingFood._id}`,
           {
             method: "PUT",
             headers: {
@@ -313,7 +313,7 @@ const AdminMenu = () => {
       // =========================
       else {
         const response = await fetch(
-          "http://localhost:5000/api/foods",
+          `${import.meta.env.VITE_API_URL}/api/foods`,
           {
             method: "POST",
             headers: {
@@ -374,7 +374,7 @@ const AdminMenu = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/foods/${food._id}`,
+        `${import.meta.env.VITE_API_URL}/api/foods/${food._id}`,
         {
           method: "DELETE",
         }
