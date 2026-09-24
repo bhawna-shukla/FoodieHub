@@ -251,4 +251,203 @@
   transform: scale(0.95);
 }
 
+/* FINAL MOBILE NAVBAR SIZE FIX */
+@media (max-width: 768px) {
+
+  .navbar {
+    height: 65px;
+    padding: 0 8px;
+  }
+
+  .logo {
+    gap: 3px;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .foodie,
+  .hub {
+    font-size: 22px !important;
+    line-height: 1;
+  }
+
+  .logo h1 {
+    font-size: 22px !important;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .logo-icon {
+    font-size: 20px !important;
+  }
+
+  .nav-right {
+    gap: 7px;
+    flex-shrink: 0;
+  }
+
+  .cart-icon {
+    font-size: 20px;
+  }
+
+  .menu-icon {
+    display: block;
+    font-size: 25px;
+  }
+
+  .logout-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+    margin-left: 0;
+  }
+}
+/* FINAL MOBILE NAVBAR SIZE FIX */
+@media (max-width: 768px) {
+
+  .navbar {
+    height: 65px;
+    padding: 0 8px;
+  }
+
+  .logo {
+    gap: 3px;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .foodie,
+  .hub {
+    font-size: 22px !important;
+    line-height: 1;
+  }
+
+  .logo h1 {
+    font-size: 22px !important;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .logo-icon {
+    font-size: 20px !important;
+  }
+
+  .nav-right {
+    gap: 7px;
+    flex-shrink: 0;
+  }
+
+  .cart-icon {
+    font-size: 20px;
+  }
+
+  .menu-icon {
+    display: block;
+    font-size: 25px;
+  }
+
+  .logout-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+    margin-left: 0;
+  }
+}
+
+/* FINAL MOBILE NAVBAR SIZE FIX */
+@media (max-width: 768px) {
+
+  .navbar {
+    height: 65px;
+    padding: 0 8px;
+  }
+
+  .logo {
+    gap: 3px;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .foodie,
+  .hub {
+    font-size: 22px !important;
+    line-height: 1;
+  }
+
+  .logo h1 {
+    font-size: 22px !important;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .logo-icon {
+    font-size: 20px !important;
+  }
+
+  .nav-right {
+    gap: 7px;
+    flex-shrink: 0;
+  }
+
+  .cart-icon {
+    font-size: 20px;
+  }
+
+  .menu-icon {
+    display: block;
+    font-size: 25px;
+  }
+
+  .logout-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .navbar {
+    padding: 0 8px;
+  }
+
+  .logo {
+    gap: 2px;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .logo h2 {
+    font-size: 20px !important;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .logo-icon {
+    font-size: 18px !important;
+    flex-shrink: 0;
+  }
+
+  .nav-right {
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .cart-icon {
+    font-size: 19px !important;
+  }
+
+  .menu-icon {
+    font-size: 23px !important;
+  }
+
+  .logout-btn {
+    padding: 5px 8px;
+    font-size: 11px;
+    margin-left: 0;
+  }
+
+  .welcome-user {
+    font-size: 12px;
+  }
+}
+
 
