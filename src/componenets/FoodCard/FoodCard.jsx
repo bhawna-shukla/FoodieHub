@@ -3,7 +3,15 @@ import { motion } from "framer-motion";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 
+const menuImages = import.meta.glob("../../assets/menu/*", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
+
 const FoodCard = ({ food }) => {
+  const fileName = food.image?.split("/").pop();
+const imagePath = menuImages[`../../assets/menu/${fileName}`];
   const { addToCart } = useContext(CartContext);
   return (
     <motion.div
@@ -14,7 +22,7 @@ const FoodCard = ({ food }) => {
       transition={{ duration: 0.4 }}
       viewport={{ once: true }}
     >
-      <img src={food.image} alt={food.name} />
+      <img src={imagePath} alt={food.name} />
 
       <div className="food-info">
 
