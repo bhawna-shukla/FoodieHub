@@ -1,4 +1,4 @@
-# 🍕 FoodieHub – Online Food Ordering Web Application
+#  FoodieHub – Online Food Ordering Web Application
 
 FoodieHub is a **full-stack online food ordering web application** built using the **MERN Stack**.
 It allows customers to browse food items, add them to cart, place orders, and track their orders. It also includes an **Admin Dashboard** for managing food items, customers, orders, and reports.
