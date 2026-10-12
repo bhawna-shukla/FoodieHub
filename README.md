@@ -100,35 +100,9 @@ FoodieHub includes authentication for both customers and administrators.
 * Role-based access
 * Protected Admin Dashboard
 
----
 
-## 📸 Project Screenshots
 
-### 🏠 Home Page
 
-*Add screenshot here*
-
-### 🍔 Food Menu
-
-*Add screenshot here*
-
-### 🛒 Cart
-
-*Add screenshot here*
-
-### 💳 Checkout
-
-*Add screenshot here*
-
-### 📦 My Orders
-
-*Add screenshot here*
-
-### 👨‍💼 Admin Dashboard
-
-*Add screenshot here*
-
----
 
 ## 📁 Project Structure
 
